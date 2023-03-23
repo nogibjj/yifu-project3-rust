@@ -1,24 +1,33 @@
-# Rock, Paper, Scissors
+# Rock, Paper, Scissors Serverless Game
 
+[![Build Status](https://travis-ci.org/awslabs/aws-lambda-rust-runtime.svg?branch=master)](https://travis-ci.org/awslabs/aws-lambda-rust-runtime)
 
-This is a simple web application that allows users to play Rock, Paper, Scissors against a computer opponent.
-The application is built using the Rust programming language and the Actix-web framework.
+This is a simple implementation of a Rock-Paper-Scissors game using Rust and AWS Lambda. It uses the lambda_http crate for handling HTTP requests and responses, the actix_web crate for routing, and the rand crate for generating random computer choices.
 
-## Requirements
+## Prerequisites
 
-To run this application, you must have Rust and Cargo installed on your system. You can download Rust and Cargo from the official website: <https://www.rust-lang.org/tools/install>
+- Rust installed on your machine
+- AWS account with proper IAM roles and policies set up
+- AWS CLI installed and configured
 
-## Running the application
+## How to Run
 
-To run the application, open a terminal window and navigate to the directory containing the source code. Then, execute the following command:
+- Clone the repository to your local machine.
+- Navigate to the project directory and run cargo build --release to build the binary.
+- Create a new Lambda function in AWS and upload the binary in the .aws-sam/build directory.
+- Set the runtime to custom and the handler to lambda_handler.
+- Set up an API Gateway to route requests to the Lambda function.
+- Test the function using your API Gateway endpoint.
 
-Copy code
-`cargo run`
-This will start the web server on <http://127.0.0.1:8080/>.
+## How to Play
 
-To play the game, navigate to <http://127.0.0.1:8080/> in your web browser. The home page will display instructions on how to play the game.
+- The game can be played by making a GET request to the API Gateway endpoint with a query parameter choice set to rock, paper, or scissors. The Lambda function will randomly generate a choice for the computer and determine the winner based on the rules of Rock-Paper-Scissors.
 
-To make a move, simply add your move to the end of the URL. For example, to play "Rock", navigate to <http://127.0.0.1:8080/rock>. The computer will choose a move at random, and the result of the game will be displayed.
+## Code Explanation
+
+- QueryParams: This is a struct that is deserialized from the query string parameters of the HTTP request. It contains a single field choice, which represents the player's choice.
+- play_game: This is the main function that handles the game logic. It parses the player's choice from the query string, generates a random choice for the computer, determines the winner, and returns the result.
+- main: This is the entry point of the program. It uses the lambda::run function to start the Lambda handler and bind it to a specific function.
 
 ## References
 

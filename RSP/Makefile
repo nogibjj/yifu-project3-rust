@@ -14,6 +14,6 @@ invoke:
 	cargo lambda invoke --remote \
   		--data-ascii '' \
 			--output-format json \
-			yifu-project3-rust 
+			RSP
 
 all: format lint test run
