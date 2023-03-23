@@ -1,7 +1,8 @@
-# rust-new-project-template
+# Rock, Paper, Scissors
+
+[![Build Status](https://travis-ci.org/kevinmichaelchen/rps.svg?branch=master)](https://travis-ci.org/kevinmichaelchen/rps)
 
 This is a simple web application that allows users to play Rock, Paper, Scissors against a computer opponent.
-
 The application is built using the Rust programming language and the Actix-web framework.
 
 ## Requirements
